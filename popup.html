@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kuikku</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+
+      <!-- Header -->
+      <header class="header">
+        <span class="logo">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+        </span>
+        <h1 class="title">Kuikku</h1>
+        <span class="count" id="item-count">0</span>
+        <button class="header-btn sync-btn" id="sync-btn" aria-label="Sync to GitHub" title="Sync to GitHub" hidden></button>
+        <button class="header-btn settings-btn" id="settings-btn" aria-label="Settings" title="Settings">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </button>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode"></button>
+      </header>
+
+      <!-- Save current page — one click, no typing -->
+      <section class="page-save-section">
+        <button id="save-page-btn" class="save-page-btn">
+          <span class="save-page-label">Save current page</span>
+          <span class="save-page-url" id="save-page-url"></span>
+        </button>
+        <p class="dup-msg" id="page-dup-msg" hidden>Already saved — see below.</p>
+        <!-- Track reading progress toggle — shown for http/https pages -->
+        <div class="track-opt-row" id="track-opt-row" hidden>
+          <span class="track-opt-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </span>
+          <span class="track-opt-label">Track reading progress</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="track-opt-input" />
+            <span class="toggle-thumb"></span>
+          </label>
+        </div>
+        <!-- Shown only when the active tab is a PDF -->
+        <div class="pdf-page-row" id="pdf-page-row" hidden>
+          <span class="pdf-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            PDF
+          </span>
+          <label class="pdf-page-label" for="pdf-page-input">Open on page</label>
+          <input
+            type="number"
+            id="pdf-page-input"
+            class="pdf-page-input"
+            min="1"
+            placeholder="e.g. 74"
+          />
+        </div>
+      </section>
+
+      <!-- Divider -->
+      <div class="divider"></div>
+
+      <!-- Save form -->
+      <section class="save-section">
+        <div class="input-row">
+          <textarea
+            id="note-input"
+            class="note-input"
+            placeholder="Type a note to save…"
+            rows="2"
+          ></textarea>
+        </div>
+        <button id="save-btn" class="save-btn">Save note</button>
+        <p class="dup-msg" id="note-dup-msg" hidden>Already saved — see below.</p>
+      </section>
+
+      <!-- Search -->
+      <section class="search-section" id="search-section">
+        <div class="search-wrapper">
+          <span class="search-icon">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </span>
+          <input
+            id="search-input"
+            class="search-input"
+            type="search"
+            placeholder="Search saved items…"
+            autocomplete="off"
+          />
+        </div>
+      </section>
+
+      <!-- Items list -->
+      <section class="list-section">
+        <ul id="items-list" class="items-list" role="list"></ul>
+        <p id="empty-state" class="empty-state" hidden>
+          Nothing saved yet. Start typing above.
+        </p>
+        <p id="no-results" class="empty-state" hidden>
+          No items match your search.
+        </p>
+      </section>
+
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>
