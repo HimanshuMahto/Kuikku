@@ -108,4 +108,4 @@ quick-save-extension/
 
 ## License
 
-MIT — free to use, modify, and distribute.
+MIT — free to use, modify, and distribute
